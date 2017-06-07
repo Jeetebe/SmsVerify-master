@@ -17,4 +17,9 @@
 
 
     <string name="desc">App Logo</string>
+    <string name="noicap_prompt">Nơi cấp</string>
+    <string name="doituong_prompt">Đối tượng</string>
+    <string name="tinh_prompt">Tỉnh/TP</string>
+    <string name="huyen_prompt">Quận/huyện</string>
+    <string name="xa_prompt">Phường/xã</string>
 </resources>

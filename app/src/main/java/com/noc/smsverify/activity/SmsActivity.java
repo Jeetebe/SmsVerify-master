@@ -55,6 +55,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
     private ProgressBar progressBar;
     private PrefManager pref;
     private TextView txtEditMobile;
+    public static String isdn;
     Json json= new Json();
 
     public static void getOtpFromSMS (String SMSBody)
@@ -97,8 +98,9 @@ public class SmsActivity extends Activity implements View.OnClickListener
 
                                 // Parsing json object response
                                 // response will be a json object
-                                String message = responseObj.getString("success");
-                                if(message.equals("404 not found"))
+                                String message = responseObj.getString("code");
+                                Json.logi("code nhan:"+message);
+                                if(message.equals("200"))
                                 {
                                     disableBroadcastReceiver();
                                     viewPager.setCurrentItem(2);
@@ -134,10 +136,11 @@ public class SmsActivity extends Activity implements View.OnClickListener
                 protected Map<String, String> getParams ()
                 {
                     Map<String, String> params = new HashMap<>();
-                    //params.put("otp", otp);
-                    params.put("grant_type", "password");
-                    params.put("username", "bahenchod");
-                    params.put("password", "poiuytrewq");
+                    params.put("code", otp);
+                    params.put("phone",isdn);
+//                    params.put("grant_type", "password");
+//                    params.put("username", "bahenchod");
+//                    params.put("password", "poiuytrewq");
 
                     Log.e(TAG, "Posting params: " + params.toString());
                     return params;
@@ -264,14 +267,15 @@ public class SmsActivity extends Activity implements View.OnClickListener
     {
 
         String mobile = inputMobile.getText().toString().trim();
-
+        isdn=mobile;
         //getting MAC Id of device
         WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo wInfo = wifiManager.getConnectionInfo();
         String mac = wInfo.getMacAddress();
 
         // validating mobile number, it should be of 10 digits length
-        if(isValidPhoneNumber(mobile))
+        //if(isValidPhoneNumber(mobile))
+        if(true)
         {
             // request for sms
             progressBar.setVisibility(View.VISIBLE);

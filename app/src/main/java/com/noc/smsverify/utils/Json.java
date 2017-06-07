@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.noc.smsverify.app.Config;
+import com.noc.smsverify.object.TinhObj;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -25,33 +26,72 @@ import java.util.ArrayList;
 public class Json {
     Gson gson=new Gson();
 
-//    public ArrayList<ChudeObj> get_chude(){
-//        JSONArray alarm = new JSONArray();
-//        ArrayList<ChudeObj> studentArray1 = new ArrayList<ChudeObj>();
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
-//        try {
-//            studentArray1.clear();
-//            try {
-//                JSONfunctions jParser = new JSONfunctions();
-//                String fullUrl=Const.url_getchude;
-//                alarm = jParser.getJSONfromURL(fullUrl);
-//            } catch (Exception e) {}
-//            for(int i = 0; i < alarm.length(); i++){
-//                JSONObject c = alarm.getJSONObject(i);
-//                ChudeObj chudeobj=new ChudeObj();
-//                //logi("chude:"+c.getString("chude"));
-//                int chudeid=c.getInt("chudeId");   chudeobj.setChudeId(chudeid);
-//                String chude = c.getString("chude"); chudeobj.setChude(chude);
-//                String ico=c.getString("ico"); chudeobj.setIco(ico);
-//                studentArray1.add(chudeobj);
-//            }
-//        } catch (JSONException e) {
-//            logi("loi:"+ e.toString());
-//        }
-//        return studentArray1;
-//    }
+    public ArrayList<TinhObj> get_danhmuc(int loai, String id){
+        JSONArray alarm = new JSONArray();
+        ArrayList<TinhObj> studentArray1 = new ArrayList<TinhObj>();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
+        String fullUrl="";
+        switch (loai)
+        {
+            case 1://tinh
+                fullUrl=Config.URL_GET_Danhmuc+"getdmtinh?loai=1&id=1";
+                break;
+            case 2://huyen
+                fullUrl=Config.URL_GET_Danhmuc+"getdmtinh?loai=2&id="+id;
+                break;
+            case 3://xa
+                fullUrl=Config.URL_GET_Danhmuc+"getdmtinh?loai=3&id="+id;
+                break;
+        }
+
+        try {
+            studentArray1.clear();
+            try {
+                JSONfunctions jParser = new JSONfunctions();
+                alarm = jParser.getJSONfromURL(fullUrl);
+                logi("url:"+fullUrl);
+            } catch (Exception e) {}
+            for(int i = 0; i < alarm.length(); i++){
+                JSONObject c = alarm.getJSONObject(i);
+                TinhObj tinhObj=new TinhObj();
+                tinhObj.setName(c.getString("name"));
+                tinhObj.setId(c.getString("id"));
+                studentArray1.add(tinhObj);
+            }
+        } catch (JSONException e) {
+            logi("loi:"+ e.toString());
+        }
+        return studentArray1;
+    }
+    public ArrayList<TinhObj> get_doituong(){
+        JSONArray alarm = new JSONArray();
+        ArrayList<TinhObj> studentArray1 = new ArrayList<TinhObj>();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        String fullUrl=Config.URL_GET_Doituong;
+
+        try {
+            studentArray1.clear();
+            try {
+                JSONfunctions jParser = new JSONfunctions();
+                alarm = jParser.getJSONfromURL(fullUrl);
+                logi("url:"+fullUrl);
+            } catch (Exception e) {}
+            for(int i = 0; i < alarm.length(); i++){
+                JSONObject c = alarm.getJSONObject(i);
+                TinhObj tinhObj=new TinhObj();
+                tinhObj.setName(c.getString("name"));
+                tinhObj.setId(c.getString("id"));
+                studentArray1.add(tinhObj);
+            }
+        } catch (JSONException e) {
+            logi("loi:"+ e.toString());
+        }
+        return studentArray1;
+    }
 
     /////////////////////////////////////////////////////////////////////////post
 
@@ -92,9 +132,10 @@ public class Json {
     }
 
 
-    public void logi(String str){
+    public static void logi(String str){
         Log.i("MyActivity:",str);
     }
+
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
         String line = "";

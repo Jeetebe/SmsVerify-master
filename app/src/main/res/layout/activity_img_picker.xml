@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_img_picker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.noc.smsverify.activity.ImgPickerActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_margin="10dp">
+        <ImageView
+            android:id="@+id/imgmattruoc"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:background="@android:color/white" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="Mặt trước"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:textSize="@dimen/textsizemedium" />
+    <ImageView
+        android:id="@+id/imgcam1"
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_camera_alt_pink_a700_36dp" />
+    <ImageView
+        android:id="@+id/imgfold1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_create_new_folder_indigo_500_36dp" />
+</LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

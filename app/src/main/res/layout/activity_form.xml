@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        // Write something
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@android:color/holo_blue_bright">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="FILE HỒ SƠ"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imgAddimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_a_photo_black_48dp" />
+            <ImageView
+                android:id="@+id/imgstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_report_problem_red_400_24dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtisdn"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="MSISDN"
+            android:enabled="false" />
+        <EditText
+            android:id="@+id/txtserialsim"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Serial SIM" />
+        <EditText
+            android:id="@+id/txthoten"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Họ và Tên" />
+        <com.pratap.calendarview.views.DatePickerView
+            android:id="@+id/txtdatengaysinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày sinh"
+            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <TextView
+                android:id="@+id/txtgioitinh"
+                android:text="Giới tính: Nam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginLeft="5dp" />
+            <Switch
+                android:id="@+id/swgioitinh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/txtcmnd"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CMND" />
+
+        <Spinner
+            android:id="@+id/spinnernoicap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/noicap_prompt"
+            />
+        <com.pratap.calendarview.views.DatePickerView
+            android:id="@+id/txtdatengaycap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày cấp"
+            android:textSize="18sp" />
+        <Spinner
+            android:id="@+id/spinnerdoituong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/doituong_prompt"
+            />
+        <Spinner
+            android:id="@+id/spinnertinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/tinh_prompt"
+            />
+        <Spinner
+            android:id="@+id/spinnerhuyen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/huyen_prompt"
+            />
+        <Spinner
+            android:id="@+id/spinnerxa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/xa_prompt"
+            />
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@color/colorPrimary"></View>
+
+        <EditText
+            android:id="@+id/txtsdtlienhe"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="SĐT liên hệ" />
+        <EditText
+            android:id="@+id/txtemail"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email" />
+        <EditText
+            android:id="@+id/txtdiachi"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"></View>
+        <EditText
+            android:id="@+id/txtshopcode"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Shopcode" />
+        <EditText
+            android:id="@+id/txtmanv"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã NV" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"></View>
+
+
+
+    </LinearLayout>
+</ScrollView>
