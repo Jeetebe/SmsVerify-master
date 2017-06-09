@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.noc.smsverify.app.Config;
+import com.noc.smsverify.object.ThongtinObj;
 import com.noc.smsverify.object.TinhObj;
 
 import org.apache.http.HttpResponse;
@@ -130,6 +131,41 @@ public class Json {
         logi("nhan dc userId:"+ result);
         return result;
     }
+    public boolean POST_Thongtinn(ThongtinObj thongtinObj){
+
+        String url=Config.URL_POST_THONGTIN;
+        logi("POST_Thongtinn:"+Config.URL_POST_THONGTIN);
+        InputStream inputStream = null;
+        String result = "";
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+            String json = "";
+            json=gson.toJson(thongtinObj);
+            StringEntity se = new StringEntity(json);
+            httpPost.setEntity(se);
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json;charset=utf8");
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+            inputStream = httpResponse.getEntity().getContent();
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "Did not work!";
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+        logi("nhan dc result:"+ result);
+        boolean b=false;
+        if (result.contains("200"))
+        {
+            b=true;
+        }
+
+        return b;
+    }
+
 
 
     public static void logi(String str){

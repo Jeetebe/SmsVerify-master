@@ -41,7 +41,7 @@ public class DatePickerView extends EditText implements DatePickerDialog.OnDateS
 
     private void setAttributes() {
 
-        setHint("Select Date");
+        //setHint("Select Date");
         setGravity(Gravity.LEFT | Gravity.CENTER);
         setFocusable(false);
         // setTextSize(18);
@@ -89,7 +89,7 @@ public class DatePickerView extends EditText implements DatePickerDialog.OnDateS
     public void setDate(Date date) {
         if (date != null) {
             this.date = date;
-            SimpleDateFormat newformat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat newformat = new SimpleDateFormat("dd/MM/yyyy");
             String formattedDate = newformat.format(date);
             setText(formattedDate);
         } else {

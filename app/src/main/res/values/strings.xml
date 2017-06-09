@@ -22,4 +22,9 @@
     <string name="tinh_prompt">Tỉnh/TP</string>
     <string name="huyen_prompt">Quận/huyện</string>
     <string name="xa_prompt">Phường/xã</string>
+
+    <string name="agreement">Tôi đồng ý với các điều khoản quy định</string>
+    <string name="clear_pad">Clear</string>
+    <string name="save_signature">Save</string>
+    <string name="compress_signature">Scale</string>
 </resources>

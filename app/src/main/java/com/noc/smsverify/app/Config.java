@@ -10,7 +10,8 @@ public class Config
     public static final String URL_REQUEST_SMS = "http://10.151.124.72:8086/FileUploaderRESTService/rest/dktttb/getcode";
     public static final String URL_VERIFY_OTP = "http://10.151.124.72:8086/FileUploaderRESTService/rest/dktttb/checkcode";
     public static final String URL_SUBMIT_CRED = "http://192.168.0.107:8000/register/credentials/";
-
+    public static final String URL_POST_THONGTIN = "http://10.151.124.72:8086/FileUploaderRESTService/rest/dktttb/postthongtin";
+    public static final String FILE_UPLOAD_URL = "http://10.151.124.72:8086/FileUploaderRESTService/rest/upload";
 
     public static final String URL_GET_Danhmuc = "http://10.151.124.72:8086/FileUploaderRESTService/rest/dktttb/";
     public static final String URL_GET_Doituong = "http://10.151.124.72:8086/FileUploaderRESTService/rest/dktttb/getdoituong";
