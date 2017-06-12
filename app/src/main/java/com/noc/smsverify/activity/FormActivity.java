@@ -30,39 +30,26 @@ import com.noc.smsverify.utils.AndroidMultiPartEntity;
 import com.noc.smsverify.utils.Json;
 import com.noc.smsverify.utils.TinyDB;
 import com.noc.smsverify.utils.UploadFileToServer;
+import com.noc.smsverify.utils.Utils;
 import com.pratap.calendarview.views.DatePickerView;
 import com.scalified.fab.ActionButton;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
+
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
 
 public class FormActivity extends AppCompatActivity  implements
         AdapterView.OnItemSelectedListener {
 
     Json json;
+    Utils utils;
     Context context;
+    Activity activity;
     TinyDB tinydb;
 
     ThongtinObj thongtinobj;
-    String isdn="939170707";
+    String taikhoan="";
+    String isdn="";
 
     TextView txtisdn;
     EditText eSim, eHoten,eCmnd,esdtlienhe,eMail,eDiachi,eShopcode,eMaNV;
@@ -97,8 +84,20 @@ public class FormActivity extends AppCompatActivity  implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         json=new Json();
+        utils=new Utils(this);
         context=this;
+        activity= (Activity) this;
         tinydb=new TinyDB(this);
+
+        taikhoan=tinydb.getString("taikhoan");
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+           isdn=extras.getString("isdn");
+        }
+        Json.logi("isdn:"+isdn);
+
+
 
         list_shopcode=tinydb.getListString("shopcode");
         list_manv=tinydb.getListString("manv");
@@ -165,6 +164,8 @@ public class FormActivity extends AppCompatActivity  implements
         spinnertinh.setOnItemSelectedListener(this);
         spinnerhuyen.setOnItemSelectedListener(this);
 
+        txtisdn.setText(isdn);
+
         swgioitinh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked)
@@ -204,8 +205,19 @@ public class FormActivity extends AppCompatActivity  implements
 //                thongtinobj.setPhoten("Duy");
 //                thongtinobj.setPisdn("939170707");
                 Collect_info_test();
-                json.POST_Thongtinn(thongtinobj);
-                //My_UploadImg2server();
+                String response=json.POST_Thongtinn(thongtinobj);
+                if (response.contains("OK"))
+                {
+                    //utils.thongbaoexit("Thông báo","Thành công");
+                    Toast.makeText(context, "Thành công", Toast.LENGTH_LONG).show();
+                    activity.finish();
+
+                }
+                else
+                {
+                    utils.thongbao("Lỗi","Thất bại:"+response);
+                }
+                My_UploadImg2server();
 
                 list_shopcode.add(eShopcode.getText().toString());
                 list_manv.add(eMaNV.getText().toString());
@@ -360,6 +372,9 @@ public class FormActivity extends AppCompatActivity  implements
 
         String noicap=dmtinh.get(spinnernoicap.getSelectedItemPosition()).getId();
         thongtinobj.setpNoiCapCMND(noicap);
+
+        thongtinobj.setpEZ(taikhoan);
+        thongtinobj.setPisdn(isdn);
     }
 
 

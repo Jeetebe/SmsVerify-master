@@ -31,6 +31,7 @@ import com.noc.smsverify.app.MyApplication;
 import com.noc.smsverify.helper.PrefManager;
 import com.noc.smsverify.receiver.SmsReceiver;
 import com.noc.smsverify.utils.Json;
+import com.noc.smsverify.utils.TinyDB;
 import com.noc.smsverify.utils.Utils;
 
 import org.json.JSONException;
@@ -59,8 +60,10 @@ public class SmsActivity extends Activity implements View.OnClickListener
     public static String isdn;
     Json json= new Json();
     Utils utils=new Utils(this);
+    private static TinyDB tinyDB;
+    static Activity activity;
 
-    public static void getOtpFromSMS (String SMSBody)
+    public static void getOtpFromSMS(String SMSBody)
     {
         inputOtp.setText(SMSBody);
         disableBroadcastReceiver();
@@ -78,7 +81,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
     }
 
     /* sending the OTP to server and activating the user */
-    private static void verifyOtp ()
+    private static void verifyOtp()
     {
         final String otp = inputOtp.getText().toString().trim();
         if(!otp.isEmpty())
@@ -105,13 +108,25 @@ public class SmsActivity extends Activity implements View.OnClickListener
                                 if(message.equals("200"))
                                 {
                                     disableBroadcastReceiver();
-                                    viewPager.setCurrentItem(2);
-                                    layoutEditMobile.setVisibility(View.GONE);
-                                    //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                                    //viewPager.setCurrentItem(2);
+                                    //layoutEditMobile.setVisibility(View.GONE);
+                                    Toast.makeText(mContext, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+
+                                    tinyDB.putBoolean("login",true);
+                                    tinyDB.putString("taikhoan",isdn);
+                                    //Activity activity = (Activity) mContext;
+                                    activity.finish();
+
+//                                    Intent intent = new Intent(mContext, MainActivity.class);
+//                                    intent.putExtra("taikhoan",isdn);
+//                                    Activity activity = (Activity) mContext;
+//                                    activity.startActivity(intent);
+//                                    setResult(Activity.RESULT_OK, intent);
+
                                 }
                                 else
                                 {
-                                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mContext, "Không hợp lệ", Toast.LENGTH_LONG).show();
                                 }
                             }
                             catch(JSONException e)
@@ -205,6 +220,9 @@ public class SmsActivity extends Activity implements View.OnClickListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms);
+        mContext= (SmsActivity) this;
+        tinyDB=new TinyDB(this);
+        activity = (Activity) mContext;
 
         viewPager = (ViewPager) findViewById(R.id.viewPagerVertical);
         inputMobile = (EditText) findViewById(R.id.inputMobile);
@@ -295,6 +313,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
         //if(true)
         {
             // request for sms
+            isdn=mobile;
             progressBar.setVisibility(View.VISIBLE);
 
             // requesting for sms
@@ -347,6 +366,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
                                 //txtEditMobile.setText(message);
                                 mContext = getApplicationContext();
                                 enableBroadcastReceiver();
+                            Json.logi("code"+message);
 
                                 //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                             //}

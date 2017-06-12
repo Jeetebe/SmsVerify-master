@@ -28,6 +28,7 @@
             android:textSize="@dimen/textsizemedium"
             android:layout_marginLeft="5dp" />
         <Switch
+            android:id="@+id/switchlogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />
@@ -44,7 +45,7 @@
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-
+        android:text="1288733518"
         android:ems="10"
         android:hint="Nhập số điện thoại"
         android:background="@layout/rounded_border_edittext"
@@ -57,7 +58,7 @@
     </EditText>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btbtimkiem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
@@ -74,6 +75,7 @@
         android:gravity="right"
         android:layout_margin="10dp">
         <ImageView
+            android:id="@+id/btnlog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_history_black_48dp" />
