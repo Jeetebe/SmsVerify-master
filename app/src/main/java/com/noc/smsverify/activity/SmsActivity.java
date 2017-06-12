@@ -31,6 +31,8 @@ import com.noc.smsverify.app.MyApplication;
 import com.noc.smsverify.helper.PrefManager;
 import com.noc.smsverify.receiver.SmsReceiver;
 import com.noc.smsverify.utils.Json;
+import com.noc.smsverify.utils.TinyDB;
+import com.noc.smsverify.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,9 +57,13 @@ public class SmsActivity extends Activity implements View.OnClickListener
     private ProgressBar progressBar;
     private PrefManager pref;
     private TextView txtEditMobile;
+    public static String isdn;
     Json json= new Json();
+    Utils utils=new Utils(this);
+    private static TinyDB tinyDB;
+    static Activity activity;
 
-    public static void getOtpFromSMS (String SMSBody)
+    public static void getOtpFromSMS(String SMSBody)
     {
         inputOtp.setText(SMSBody);
         disableBroadcastReceiver();
@@ -71,11 +77,11 @@ public class SmsActivity extends Activity implements View.OnClickListener
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
-        Toast.makeText(mContext, "Disabled broadcast receiver", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "Disabled broadcast receiver", Toast.LENGTH_SHORT).show();
     }
 
     /* sending the OTP to server and activating the user */
-    private static void verifyOtp ()
+    private static void verifyOtp()
     {
         final String otp = inputOtp.getText().toString().trim();
         if(!otp.isEmpty())
@@ -97,17 +103,30 @@ public class SmsActivity extends Activity implements View.OnClickListener
 
                                 // Parsing json object response
                                 // response will be a json object
-                                String message = responseObj.getString("success");
-                                if(message.equals("404 not found"))
+                                String message = responseObj.getString("code");
+                                Json.logi("code nhan:"+message);
+                                if(message.equals("200"))
                                 {
                                     disableBroadcastReceiver();
-                                    viewPager.setCurrentItem(2);
-                                    layoutEditMobile.setVisibility(View.GONE);
-                                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                                    //viewPager.setCurrentItem(2);
+                                    //layoutEditMobile.setVisibility(View.GONE);
+                                    Toast.makeText(mContext, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+
+                                    tinyDB.putBoolean("login",true);
+                                    tinyDB.putString("taikhoan",isdn);
+                                    //Activity activity = (Activity) mContext;
+                                    activity.finish();
+
+//                                    Intent intent = new Intent(mContext, MainActivity.class);
+//                                    intent.putExtra("taikhoan",isdn);
+//                                    Activity activity = (Activity) mContext;
+//                                    activity.startActivity(intent);
+//                                    setResult(Activity.RESULT_OK, intent);
+
                                 }
                                 else
                                 {
-                                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mContext, "Không hợp lệ", Toast.LENGTH_LONG).show();
                                 }
                             }
                             catch(JSONException e)
@@ -134,10 +153,11 @@ public class SmsActivity extends Activity implements View.OnClickListener
                 protected Map<String, String> getParams ()
                 {
                     Map<String, String> params = new HashMap<>();
-                    //params.put("otp", otp);
-                    params.put("grant_type", "password");
-                    params.put("username", "bahenchod");
-                    params.put("password", "poiuytrewq");
+                    params.put("code", otp);
+                    params.put("phone",isdn);
+//                    params.put("grant_type", "password");
+//                    params.put("username", "bahenchod");
+//                    params.put("password", "poiuytrewq");
 
                     Log.e(TAG, "Posting params: " + params.toString());
                     return params;
@@ -166,10 +186,25 @@ public class SmsActivity extends Activity implements View.OnClickListener
     /* Regex to validate the mobile number mobile number should be of 10 digits length
      * @param mobile
      * @return */
-    private static boolean isValidPhoneNumber (String mobile)
+    private boolean isValidPhoneNumber (String mobile)
     {
-        String regEx = "^[0-9]{10}$";
-        return mobile.matches(regEx);
+//        String regEx = "^[0-9]{10}$";
+//        return mobile.matches(regEx);
+        Boolean b=false;
+        String ez=inputMobile.getText().toString();
+        String ezisdn="";
+        if (ez.startsWith("0"))
+        {
+            ezisdn=ez.substring(1,ez.length());
+        }
+        else
+        {
+            ezisdn=ez;
+        }
+        Json.logi("ezisdn"+ezisdn);
+        b=json.POST_checkezlogtin(ezisdn);
+
+        return b;
     }
 
     private static boolean isvalid_email (String email)
@@ -185,6 +220,9 @@ public class SmsActivity extends Activity implements View.OnClickListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms);
+        mContext= (SmsActivity) this;
+        tinyDB=new TinyDB(this);
+        activity = (Activity) mContext;
 
         viewPager = (ViewPager) findViewById(R.id.viewPagerVertical);
         inputMobile = (EditText) findViewById(R.id.inputMobile);
@@ -264,16 +302,18 @@ public class SmsActivity extends Activity implements View.OnClickListener
     {
 
         String mobile = inputMobile.getText().toString().trim();
-
+        isdn=mobile;
         //getting MAC Id of device
         WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo wInfo = wifiManager.getConnectionInfo();
-        String mac = wInfo.getMacAddress();
+        String mac = Utils.get_deviceinfor();
 
         // validating mobile number, it should be of 10 digits length
         if(isValidPhoneNumber(mobile))
+        //if(true)
         {
             // request for sms
+            isdn=mobile;
             progressBar.setVisibility(View.VISIBLE);
 
             // requesting for sms
@@ -282,7 +322,10 @@ public class SmsActivity extends Activity implements View.OnClickListener
 
         }
         else
-            Toast.makeText(getApplicationContext(), "Please enter valid mobile number", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Số điện thoại chưa khai báo", Toast.LENGTH_SHORT).show();
+        utils.thongbao("Lỗi","Số điện thoại chưa khai báo");
+
+
     }
 
     /* Method initiates the SMS request on the server
@@ -293,7 +336,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
         Log.d(TAG, "requestForSMS");
         final Map<String, String> params = new HashMap<>();
         params.put("phone", mobile);
-        //params.put("mac", mac);
+        params.put("imei", mac);
 
         StringRequest strReq = new StringRequest(
                 Request.Method.POST,
@@ -320,11 +363,12 @@ public class SmsActivity extends Activity implements View.OnClickListener
                                 viewPager.setCurrentItem(1);
                                 //txtEditMobile.setText(pref.getMobileNumber());
                                 layoutEditMobile.setVisibility(View.VISIBLE);
-                                txtEditMobile.setText(message);
+                                //txtEditMobile.setText(message);
                                 mContext = getApplicationContext();
                                 enableBroadcastReceiver();
+                            Json.logi("code"+message);
 
-                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                             //}
                             //else
                                 //Toast.makeText(getApplicationContext(), "Error: " + message, Toast.LENGTH_LONG).show();
@@ -373,7 +417,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
-        Toast.makeText(this, "Enabled broadcast receiver", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Enabled broadcast receiver", Toast.LENGTH_SHORT).show();
     }
 
     private void submitcredentials ()
@@ -393,7 +437,7 @@ public class SmsActivity extends Activity implements View.OnClickListener
 
         StringRequest strReq = new StringRequest(
                 Request.Method.POST,
-                Config.URL_SUBMIT_CRED,
+                Config.URL_VERIFY_OTP,//????????????
                 new Response.Listener<String>()
                 {
                     //response from the server

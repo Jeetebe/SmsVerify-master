@@ -17,7 +17,7 @@
         android:layout_marginTop="100dp"
         android:contentDescription="@string/desc"
         android:src="@mipmap/ic_launcher"
-        />
+        android:visibility="invisible" />
 
     <com.noc.smsverify.helper.MyViewPager
         android:id="@+id/viewPagerVertical"
@@ -102,7 +102,7 @@
 
             <EditText
                 android:id="@+id/inputOtp"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"

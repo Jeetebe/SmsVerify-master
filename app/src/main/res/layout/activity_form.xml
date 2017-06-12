@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        // Write something
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@android:color/holo_blue_bright">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="File hồ sơ"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imgAddimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_a_photo_black_48dp" />
+            <ImageView
+                android:id="@+id/imgstatus1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_report_problem_red_400_24dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@android:color/holo_green_light">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Ký tên"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imgSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sign64"
+                android:layout_margin="5dp" />
+            <ImageView
+                android:id="@+id/imgstatus2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_report_problem_red_400_24dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"></View>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+        <EditText
+            android:id="@+id/txtshopcode"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Shop code*" />
+          <ImageView
+              android:id="@+id/listshopcode"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_list_black_36dp" />
+      </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/txtmanv"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Mã NV*" />
+            <ImageView
+                android:id="@+id/listmannv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_list_black_36dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtisdn"
+            android:maxLines="1"
+            android:text="898028970"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textSize="@dimen/textsizemedium"
+            android:padding="5dp" />
+        <EditText
+            android:id="@+id/txtserialsim"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Serial SIM*" />
+        <EditText
+            android:id="@+id/txthoten"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Họ và Tên*"
+            android:text="Tran Ba Duy" />
+        <com.pratap.calendarview.views.DatePickerView
+            android:id="@+id/txtdatengaysinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày sinh"
+            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <TextView
+                android:id="@+id/txtgioitinh"
+                android:text="Giới tính: Nam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginLeft="5dp" />
+            <Switch
+                android:id="@+id/swgioitinh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/txtcmnd"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CMND*" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        android:text="Nơi cấp*"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsizemedium" />
+        <Spinner
+            android:id="@+id/spinnernoicap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/noicap_prompt"
+            android:layout_marginLeft="50dp" />
+</LinearLayout>
+        <com.pratap.calendarview.views.DatePickerView
+            android:id="@+id/txtdatengaycap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày cấp*"
+            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:text="Đối tượng*"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+            <Spinner
+                android:id="@+id/spinnerdoituong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/doituong_prompt"
+                />
+        </LinearLayout>
+        <TextView
+            android:text="Khu vực*"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="100dp">
+
+
+        <Spinner
+            android:id="@+id/spinnertinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/tinh_prompt"
+            />
+        <Spinner
+            android:id="@+id/spinnerhuyen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/huyen_prompt"
+            />
+        <Spinner
+            android:id="@+id/spinnerxa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/xa_prompt"
+            />
+        </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@color/colorPrimary"></View>
+
+        <EditText
+            android:id="@+id/txtsdtlienhe"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="SĐT liên hệ" />
+        <EditText
+            android:id="@+id/txtemail"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email" />
+        <EditText
+            android:id="@+id/txtdiachi"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"></View>
+
+
+
+    </LinearLayout>
+    </ScrollView>
+    <com.scalified.fab.ActionButton
+        android:id="@+id/action_button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        ads:image="@drawable/ic_send_white_24dp"
+        ads:button_color="@android:color/holo_green_light"
+     />
+
+</RelativeLayout>
