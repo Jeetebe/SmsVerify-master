@@ -50,57 +50,96 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
-        ViewHolder holder = null;
-        final LogObj logobj =  getItem(position);
-        if (inflater == null) {
-            inflater = (LayoutInflater) parent.getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-        //RowItemBinding rowItemBinding = DataBindingUtil.inflate(inflater, R.layout.row_item, parent, false);
-       // rowItemBinding.stringName.setText(mData.get(position));
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Get the data item for this position
+        LogObj dataModel = getItem(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        ViewHolder viewHolder; // view lookup cache stored in tag
+
+        final View result;
+
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.row_item_log, null);
-            holder = new ViewHolder();
-            holder.iconstatus = (ImageView) convertView.findViewById(R.id.iconstatus);
-            holder.isdn = (TextView) convertView.findViewById(R.id.strisdnlog);
-            holder.btnxem = (TextView) convertView.findViewById(R.id.btnxem);
-            holder.ngay = (TextView) convertView.findViewById(R.id.ngay);
 
-            // setting the image resource and title
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(R.layout.row_item_log, parent, false);
+            viewHolder.isdn = (TextView) convertView.findViewById(R.id.strisdnlog);
+            viewHolder.ngay = (TextView) convertView.findViewById(R.id.ngay);
+            viewHolder.txtghichu = (TextView) convertView.findViewById(R.id.ghichu);
+            viewHolder.iconstatus = (ImageView) convertView.findViewById(R.id.iconstatus);
 
-            holder.isdn.setText(mData.get(position).getIsdn());
-            holder.ngay.setText(mData.get(position).getNgay());
+            result=convertView;
 
-            String status=logobj.getStatus();
-            if (status.equals("2"))
-            {
-                holder.iconstatus.setImageResource(R.drawable.ic_check_circle_light_green_800_24dp);
-            }
-            else if (status.equals("3"))
-            {
-                holder.iconstatus.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
-            }
-
-
-            holder.btnxem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, FormActivity.class);
-                    intent.putExtra("isdn",logobj.getIsdn());
-                    Activity activity = (Activity) context;
-                    activity.startActivityForResult(intent, 500);
-                    activity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.null_animation);
-
-                }
-            });
-            convertView.setTag(holder);
-
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+            result=convertView;
         }
 
+//        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+//        result.startAnimation(animation);
+//        lastPosition = position;
+
+        viewHolder.isdn.setText(dataModel.getIsdn());
+        viewHolder.ngay.setText(dataModel.getNgay());
+        viewHolder.txtghichu.setText(dataModel.getGhichu());
+        //viewHolder.info.setOnClickListener(this);
+        //viewHolder.info.setTag(position);
+        // Return the completed view to render on screen
+        String status=dataModel.getStatus();
+                if (status.equals("2"))
+                {
+                    viewHolder.iconstatus.setImageResource(R.drawable.ic_check_circle_light_green_800_24dp);
+                }
+                else if (status.equals("3"))
+                {
+                    viewHolder.iconstatus.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
+                }
         return convertView;
-        //return rowItemBinding.getRoot();
     }
+
+//    @Override
+//        public View getView(int position, View convertView, final ViewGroup parent) {
+//            ViewHolder holder = null;
+//            LogObj logobj =  getItem(position);
+//            if (inflater == null) {
+//                inflater = (LayoutInflater) parent.getContext()
+//                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            }
+//            //RowItemBinding rowItemBinding = DataBindingUtil.inflate(inflater, R.layout.row_item, parent, false);
+//            // rowItemBinding.stringName.setText(mData.get(position));
+//            if (convertView == null) {
+//                convertView = inflater.inflate(R.layout.row_item_log, null);
+//                holder = new ViewHolder();
+//                holder.iconstatus = (ImageView) convertView.findViewById(R.id.iconstatus);
+//                holder.isdn = (TextView) convertView.findViewById(R.id.strisdnlog);
+//                holder.txtghichu = (TextView) convertView.findViewById(R.id.ghichu);
+//                holder.ngay = (TextView) convertView.findViewById(R.id.ngay);
+//
+//                // setting the image resource and title
+//
+//                holder.isdn.setText(position+"."+mData.get(position).getIsdn());
+//                holder.ngay.setText(mData.get(position).getNgay());
+//                holder.txtghichu.setText(mData.get(position).getGhichu());
+//
+//                String status=logobj.getStatus();
+//                if (status.equals("2"))
+//                {
+//                    holder.iconstatus.setImageResource(R.drawable.ic_check_circle_light_green_800_24dp);
+//                }
+//                else if (status.equals("3"))
+//                {
+//                    holder.iconstatus.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
+//                }
+//                convertView.setTag(holder);
+//            } else {
+//                holder = (ViewHolder) convertView.getTag();
+//                //result=holder;
+//            }
+//
+//        return convertView;
+//        //return rowItemBinding.getRoot();
+//    }
 
     @Override
     public Filter getFilter() {
@@ -143,7 +182,7 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
     private class ViewHolder {
         ImageView iconstatus;
         TextView isdn;
-        TextView btnxem;
+        TextView txtghichu;
         TextView ngay;
     }
 }

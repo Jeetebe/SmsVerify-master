@@ -25,15 +25,17 @@ public class UploadFileToServer extends AsyncTask<Void, Integer, String> {
     private String filePath = null;
     private String isdn=null;
     private String loai=null;
+    private String currdate=null;
 
     public UploadFileToServer( String filePath) {
         this.filePath = filePath;
     }
 
-    public UploadFileToServer(String filePath, String isdn, String loai) {
+    public UploadFileToServer(String filePath, String isdn, String loai, String currdate ) {
         this.filePath = filePath;
         this.isdn = isdn;
         this.loai = loai;
+        this.currdate=currdate;
     }
 
     @Override
@@ -63,7 +65,9 @@ public class UploadFileToServer extends AsyncTask<Void, Integer, String> {
     @SuppressWarnings("deprecation")
     private String uploadFile() {
         String responseString = null;
+
         Json.logi("UploadFileToServer:"+ filePath);
+
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(Config.FILE_UPLOAD_URL);
@@ -85,6 +89,7 @@ public class UploadFileToServer extends AsyncTask<Void, Integer, String> {
             entity.addPart("isdn",
                     new StringBody(isdn));
             entity.addPart("loai", new StringBody(loai));
+            entity.addPart("currdate", new StringBody(currdate));
 
             totalSize = entity.getContentLength();
             httppost.setEntity(entity);

@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/txtisdn"
+        android:maxLines="1"
+        android:layout_weight="1"
+        android:text="898028970"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:textSize="@dimen/textsizebig"
+        android:padding="10dp"
+
+        android:textColor="@android:color/white" />
+        <ImageView
+            android:id="@+id/action_button_submit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+            android:src="@drawable/ic_send_white_48dp"
+            android:padding="5dp" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtisdn">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,109 +44,86 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        // Write something
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:background="@android:color/holo_blue_bright">
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="File hồ sơ"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textSize="20sp" />
-            <ImageView
-                android:id="@+id/imgAddimg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_a_photo_black_48dp" />
-            <ImageView
-                android:id="@+id/imgstatus1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_report_problem_red_400_24dp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:background="@android:color/holo_green_light">
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Ký tên"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textSize="20sp" />
-            <ImageView
-                android:id="@+id/imgSign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_sign64"
-                android:layout_margin="5dp" />
-            <ImageView
-                android:id="@+id/imgstatus2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_report_problem_red_400_24dp" />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorPrimary"></View>
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal">
-        <EditText
-            android:id="@+id/txtshopcode"
-            android:maxLines="1"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Shop code*" />
-          <ImageView
-              android:id="@+id/listshopcode"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@drawable/ic_list_black_36dp" />
-      </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <EditText
-                android:id="@+id/txtmanv"
-                android:maxLines="1"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_weight="0.5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Mã NV*" />
-            <ImageView
-                android:id="@+id/listmannv"
+                android:layout_height="100dp"
+                android:background="@color/fab_material_green_500"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/imgAddimg"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_linked_camera_white_48dp"
+                    android:layout_gravity="center" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <TextView
+                    android:text="File hồ sơ"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsizemedium"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/white" />
+                    <ImageView
+                        android:id="@+id/imgstatus1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_report_problem_red_400_24dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_list_black_36dp" />
+                android:layout_height="100dp"
+                android:background="@android:color/holo_blue_light"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/imgSign"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sign"
+                    android:layout_gravity="center" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="Ký tên"
+                        android:textColor="@android:color/white"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textsizemedium"
+                        android:layout_marginLeft="5dp" />
+                    <ImageView
+                        android:id="@+id/imgstatus2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_report_problem_red_400_24dp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
+        // Write something
 
-        <TextView
-            android:id="@+id/txtisdn"
-            android:maxLines="1"
-            android:text="898028970"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:textSize="@dimen/textsizemedium"
-            android:padding="5dp" />
+
+
+
+
+
         <EditText
             android:id="@+id/txtserialsim"
             android:maxLines="1"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Serial SIM*" />
@@ -129,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Họ và Tên*"
-            android:text="Tran Ba Duy" />
+            />
         <com.pratap.calendarview.views.DatePickerView
             android:id="@+id/txtdatengaysinh"
             android:layout_width="match_parent"
@@ -155,6 +159,7 @@
         </LinearLayout>
         <EditText
             android:id="@+id/txtcmnd"
+            android:inputType="number"
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -167,11 +172,12 @@
         android:text="Nơi cấp*"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/textsizemedium" />
+        android:textSize="@dimen/textsizemedium"
+        android:padding="8dp" />
         <Spinner
             android:id="@+id/spinnernoicap"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:prompt="@string/noicap_prompt"
             android:layout_marginLeft="50dp" />
 </LinearLayout>
@@ -189,11 +195,12 @@
             android:text="Đối tượng*"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:padding="8dp" />
             <Spinner
                 android:id="@+id/spinnerdoituong"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:prompt="@string/doituong_prompt"
                 />
         </LinearLayout>
@@ -201,7 +208,8 @@
             android:text="Khu vực*"
             android:textSize="18sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="8dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -213,8 +221,7 @@
             android:id="@+id/spinnertinh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/tinh_prompt"
-            />
+            android:prompt="@string/tinh_prompt" />
         <Spinner
             android:id="@+id/spinnerhuyen"
             android:layout_width="match_parent"
@@ -228,49 +235,68 @@
             android:prompt="@string/xa_prompt"
             />
         </LinearLayout>
-<View
-    android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:background="@color/colorPrimary"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/txtmanv"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Mã NV đấu nối" />
+            <ImageView
+                android:id="@+id/listmannv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_list_black_36dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/txtsdtlienhe"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="SĐT liên hệ" />
-        <EditText
-            android:id="@+id/txtemail"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email" />
-        <EditText
-            android:id="@+id/txtdiachi"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Địa chỉ" />
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorPrimary"></View>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:background="@color/transblue">
+            <EditText
+                android:id="@+id/txtsdtlienhe"
+                android:maxLines="1"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="SĐT liên hệ" />
+            <EditText
+                android:id="@+id/txtemail"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email" />
+            <EditText
+                android:id="@+id/txtsonha"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số nhà" />
+            <EditText
+                android:id="@+id/txtto"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tổ" />
+            <EditText
+                android:id="@+id/txtduong"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Đường" />
+
+        </LinearLayout>
 
 
 
     </LinearLayout>
     </ScrollView>
-    <com.scalified.fab.ActionButton
-        android:id="@+id/action_button_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        ads:image="@drawable/ic_send_white_24dp"
-        ads:button_color="@android:color/holo_green_light"
-     />
 
-</RelativeLayout>
+</LinearLayout>

@@ -49,12 +49,13 @@ public class FormActivity extends AppCompatActivity  implements
 
     ThongtinObj thongtinobj;
     String taikhoan="";
-    String isdn="";
+    String isdn="898028970";//test
+    String currdate="";
 
     TextView txtisdn;
-    EditText eSim, eHoten,eCmnd,esdtlienhe,eMail,eDiachi,eShopcode,eMaNV;
+    EditText eSim, eHoten,eCmnd,esdtlienhe,eMail,eSonha,eTo,eDuong,eMaNV;
 
-    ImageView listshopcode,listmannv;
+    ImageView listmannv;
 
     private ImageView btn_datengaysinh, btn_datengaycap;
     DatePickerView txtdatengaysinh, txtdatengaycap;
@@ -63,7 +64,8 @@ public class FormActivity extends AppCompatActivity  implements
     TextView txtgioitinh;
     ImageView imgAddimg,imgstatus1;
     ImageView imgSign,imgstatus2;
-    private ActionButton fbutton;
+    //private ActionButton fbutton;
+    private ImageView fbutton;
 
     ArrayList<TinhObj> dmtinh=new ArrayList<TinhObj>();
     ArrayList<TinhObj> dmhuyen=new ArrayList<TinhObj>();
@@ -76,8 +78,11 @@ public class FormActivity extends AppCompatActivity  implements
     //Map<String,String> listimg = new HashMap<String, String>();
     CollimgObj collImage;
 
-    ArrayList<String> list_shopcode = new ArrayList<String>() ;
+    //ArrayList<String> list_shopcode = new ArrayList<String>() ;
     ArrayList<String> list_manv = new ArrayList<String>() ;
+    Boolean isdangky=false;
+    Boolean ckAnh=false;
+    Boolean ckChuky=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,21 +93,28 @@ public class FormActivity extends AppCompatActivity  implements
         context=this;
         activity= (Activity) this;
         tinydb=new TinyDB(this);
+        //thongbaoloi("test");
 
         taikhoan=tinydb.getString("taikhoan");
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
            isdn=extras.getString("isdn");
+            isdangky=extras.getBoolean("isdangky");
         }
         Json.logi("isdn:"+isdn);
+        if (isdangky)
+        {
+            eSim.setVisibility(View.GONE);
+        }
 
 
 
-        list_shopcode=tinydb.getListString("shopcode");
+        //list_shopcode=tinydb.getListString("shopcode");
         list_manv=tinydb.getListString("manv");
 
-        thongtinobj=new ThongtinObj("test");
+        thongtinobj=new ThongtinObj();
+        //thongtinobj=new ThongtinObj("test");
         collImage=new CollimgObj();
 
         dmtinh=json.get_danhmuc(1,"");
@@ -126,8 +138,10 @@ public class FormActivity extends AppCompatActivity  implements
         eCmnd=(EditText) findViewById(R.id.txtcmnd);
         esdtlienhe=(EditText) findViewById(R.id.txtsdtlienhe);
         eMail=(EditText) findViewById(R.id.txtemail);
-        eDiachi=(EditText) findViewById(R.id.txtdiachi);
-        eShopcode=(EditText) findViewById(R.id.txtshopcode);
+        eSonha=(EditText) findViewById(R.id.txtsonha);
+        eTo=(EditText) findViewById(R.id.txtto);
+        eDuong=(EditText) findViewById(R.id.txtduong);
+        //eShopcode=(EditText) findViewById(R.id.txtshopcode);
         eMaNV=(EditText) findViewById(R.id.txtmanv);
 
         spinnertinh = (Spinner) findViewById(R.id.spinnertinh);
@@ -147,7 +161,7 @@ public class FormActivity extends AppCompatActivity  implements
         imgstatus2=(ImageView) findViewById(R.id.imgstatus2) ;
 
         listmannv=(ImageView) findViewById(R.id.listmannv);
-        listshopcode=(ImageView) findViewById(R.id.listshopcode);
+        //listshopcode=(ImageView) findViewById(R.id.listshopcode);
 
         txtdatengaysinh.setHint("Ngày sinh*");
         txtdatengaycap.setHint("Ngày cấp*");
@@ -164,7 +178,15 @@ public class FormActivity extends AppCompatActivity  implements
         spinnertinh.setOnItemSelectedListener(this);
         spinnerhuyen.setOnItemSelectedListener(this);
 
-        txtisdn.setText(isdn);
+        if (isdangky)
+        {
+            txtisdn.setText("Đăng ký: "+isdn);
+        }
+        else
+        {
+            txtisdn.setText("Đấu nối: "+isdn);
+        }
+
 
         swgioitinh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -197,53 +219,45 @@ public class FormActivity extends AppCompatActivity  implements
             }
         });
 
-        fbutton=(ActionButton) findViewById(R.id.action_button_submit);
+        fbutton=(ImageView) findViewById(R.id.action_button_submit);
         fbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                thongtinobj.setpEZ("123");
-//                thongtinobj.setPhoten("Duy");
-//                thongtinobj.setPisdn("939170707");
-                Collect_info_test();
-                String response=json.POST_Thongtinn(thongtinobj);
-                if (response.contains("OK"))
-                {
-                    //utils.thongbaoexit("Thông báo","Thành công");
-                    Toast.makeText(context, "Thành công", Toast.LENGTH_LONG).show();
-                    activity.finish();
+                Json.logi("click post");
+                //Collect_info_test();
+                currdate= Utils.getCurrentTimeStamp();
+                Json.logi("getCurrentTimeStamp:"+ currdate);
+                Collect_info();
 
+                if (check_Collect_info()) {//thog tin hop le
+
+
+
+                    String response = json.POST_Thongtinn(thongtinobj);
+                    if (response.contains("OK")) {
+                        //utils.thongbaoexit("Thông báo","Thành công");
+                        My_UploadImg2server();
+                        Toast.makeText(context, "Thành công", Toast.LENGTH_LONG).show();
+                        activity.setResult(RESULT_OK);
+                        activity.finish();
+
+                    } else {
+                        //activity.setResult(RESULT_CANCELED);
+                        thongbaoloi("Thất bại:" + response);
+                    }
+
+
+                    //list_shopcode.add(eShopcode.getText().toString());
+                    list_manv.add(eMaNV.getText().toString());
+
+                    //tinydb.putListString("shopcode",list_shopcode);
+                    tinydb.putListString("manv", list_manv);
+                    //Json.logi("save shop code to db");
                 }
                 else
                 {
-                    utils.thongbao("Lỗi","Thất bại:"+response);
+
                 }
-                My_UploadImg2server();
-
-                list_shopcode.add(eShopcode.getText().toString());
-                list_manv.add(eMaNV.getText().toString());
-
-                tinydb.putListString("shopcode",list_shopcode);
-                tinydb.putListString("manv",list_manv);
-                Json.logi("save shop code to db");
-            }
-        });
-        listshopcode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                final CharSequence[] cs = list_shopcode.toArray(new CharSequence[list_shopcode.size()]);
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Chọn Shop code");
-                //builder.setItems(colors, new DialogInterface.OnClickListener() {
-                builder.setItems(cs, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // the user clicked on colors[which]
-                        Json.logi("click:"+cs[which].toString());
-                        eShopcode.setText(cs[which].toString());
-                    }
-                });
-                builder.show();
             }
         });
         listmannv.setOnClickListener(new View.OnClickListener() {
@@ -279,7 +293,7 @@ public class FormActivity extends AppCompatActivity  implements
             //Toast.makeText(getApplicationContext(), tinhobj.getName(), Toast.LENGTH_LONG).show();
             Json.logi("tinh:" + tinhobj.getName());
             dmhuyen.clear();
-            dmhuyen = json.get_danhmuc(2, tinhobj.getId());
+            dmhuyen = json.get_danhmuc(2, tinhobj.getParent());
             listhuyen = new ArrayList();
             for (TinhObj tinh : dmhuyen
                     ) {
@@ -296,7 +310,7 @@ public class FormActivity extends AppCompatActivity  implements
            // Toast.makeText(getApplicationContext(), tinhobj.getName(), Toast.LENGTH_LONG).show();
             Json.logi("huyen:" + tinhobj.getName());
             dmxa.clear();
-            dmxa = json.get_danhmuc(3, tinhobj.getId());
+            dmxa = json.get_danhmuc(3, tinhobj.getParent());
             listxa = new ArrayList();
             for (TinhObj tinh : dmxa
                     ) {
@@ -322,6 +336,7 @@ public class FormActivity extends AppCompatActivity  implements
         if (requestCode==1)// chon image
         {
             if (resultCode == Activity.RESULT_OK) {
+                ckAnh=true;
 //                //ArrayList<String> myList = (ArrayList<String>) getIntent().getSerializableExtra("mylist");
 //                //ArrayList<String> myList = (ArrayList<String>) data.getSerializableExtra("mylist");
 //                Map<String,String> listimg = (Map<String,String>) data.getSerializableExtra("mylist");
@@ -340,10 +355,16 @@ public class FormActivity extends AppCompatActivity  implements
 //                    imgstatus1.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
 //                }
             }
+            else
+            {
+                ckAnh=false;
+                imgstatus1.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
+            }
         }
         else if (requestCode==2)  //signature
             {
                 if (resultCode == Activity.RESULT_OK) {
+                    ckChuky=true;
                     String signpath = data.getStringExtra("signpath");
                     Json.logi("nhan dc signpath:" + signpath);
                     if (signpath.length()>0)
@@ -355,6 +376,11 @@ public class FormActivity extends AppCompatActivity  implements
                     {
                         imgstatus2.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
                     }
+                }
+                else
+                {
+                    ckChuky=false;
+                    imgstatus2.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
                 }
             }
         }
@@ -377,23 +403,73 @@ public class FormActivity extends AppCompatActivity  implements
         thongtinobj.setPisdn(isdn);
     }
 
+    private Boolean check_Collect_info()
+    {
+        Boolean result=false;
+        if (thongtinobj.getPserial().length()<13)
+        {
+            thongbaoloi("Serial Sim không hợp lệ");
+        }
+        else if (thongtinobj.getPhoten().length()==0)
+        {
+            thongbaoloi("Họ tên không được trống");
+        }
+        else if (thongtinobj.getPcmnd().length()==0)
+        {
+            thongbaoloi("CMND không được trống");
+        }
+        else if (thongtinobj.getPmaxa().length()==0)
+        {
+            thongbaoloi("Khu vực không hợp lệ");
+        }
+        else if (thongtinobj.getPngaysinh().length()==0)
+        {
+            thongbaoloi("Ngày sinh không hợp lệ");
+        }
+        else if (thongtinobj.getpNgayCapCMND().length()==0)
+        {
+            thongbaoloi("Ngày cấp CMND không hợp lệ");
+        }
+        else if (!ckAnh)
+        {
+            thongbaoloi("Chưa chọn ảnh hồ sơ");
+        }
+        else if (!ckChuky)
+        {
+            thongbaoloi("Chưa ký tên");
+        }
+        else {
+            result = true;
+        }
+
+        return  result;
+    }
 
     private void Collect_info()
     {
-        thongtinobj.setpEZ("939700303");//test
+        //thongtinobj.setpEZ("939700303");//test
+        thongtinobj.setpEZ(taikhoan);
         thongtinobj.setPisdn(isdn);
 
-        thongtinobj.setPisdn(txtisdn.getText().toString());
+        if (isdangky)
+        {
+            thongtinobj.setpPhanLoai(2);
+        }
+        else
+        {
+            thongtinobj.setpPhanLoai(1);
+        }
+
         thongtinobj.setPserial(eSim.getText().toString());
         thongtinobj.setPhoten(eHoten.getText().toString());
         thongtinobj.setPngaysinh(txtdatengaysinh.getText().toString());
         if (swgioitinh.isChecked())
         {
-            thongtinobj.setpGioiTinh(0);
+            thongtinobj.setpGioiTinh(1);
         }
         else
         {
-            thongtinobj.setpGioiTinh(1);
+            thongtinobj.setpGioiTinh(0);
         }
         thongtinobj.setPcmnd(eCmnd.getText().toString());
         String noicap=dmtinh.get(spinnernoicap.getSelectedItemPosition()).getId();
@@ -410,19 +486,20 @@ public class FormActivity extends AppCompatActivity  implements
 
         thongtinobj.setPsdt_lienhe(esdtlienhe.getText().toString());
         thongtinobj.setpEmail(eMail.getText().toString());
-        thongtinobj.setPduong(eDiachi.getText().toString());
+        thongtinobj.setPduong("");
 
-        thongtinobj.setpShop_Code(eShopcode.getText().toString());
+        thongtinobj.setpShop_Code("");
         thongtinobj.setpEmployee(eMaNV.getText().toString());
 
 
-        thongtinobj.setPfile_cmnd1(isdn + "/" + isdn + "_mattruoc.jpg");
-        thongtinobj.setPfile_cmnd2(isdn + "/" + isdn + "_matsau.jpg");
-        thongtinobj.setPfile_hoso(isdn + "/" + isdn + "_phieuthongtin.jpg");
-        thongtinobj.setPfile_hinh(isdn + "/" + isdn + "_anhnguoi.jpg");
+        thongtinobj.setPfile_cmnd1(isdn +"_"+currdate+ "/" + isdn + "_mattruoc.jpg");
+        thongtinobj.setPfile_cmnd2(isdn +"_"+currdate+ "/" + isdn + "_matsau.jpg");
+        thongtinobj.setPfile_hoso(isdn +"_"+currdate+ "/" + isdn + "_phieuthongtin.jpg");
+        thongtinobj.setPfile_hinh(isdn +"_"+currdate+ "/" + isdn + "_anhnguoi.jpg");
 
+        thongtinobj.setPfile_chuky(isdn +"_"+currdate+ "/" + isdn + "_chuky.jpg");
 
-
+        thongtinobj.setPserial("8401161033617932");//test
 
 
     }
@@ -435,7 +512,7 @@ public class FormActivity extends AppCompatActivity  implements
             String img1=collImage.getImgtruoc();
             if (img1.length()>0) {
                 Json.logi("img1:" + img1);
-                new UploadFileToServer(img1, isdn, "mattruoc").execute();
+                new UploadFileToServer(img1, isdn, "mattruoc",currdate).execute();
             }
         }
         catch (Exception e)
@@ -448,7 +525,7 @@ public class FormActivity extends AppCompatActivity  implements
             String img2=collImage.getImgsau();
             if (img2.length()>0) {
                 Json.logi("img2:" + img2);
-                new UploadFileToServer(img2, isdn, "matsau").execute();
+                new UploadFileToServer(img2, isdn, "matsau",currdate).execute();
             }
         }
         catch (Exception e)
@@ -461,7 +538,7 @@ public class FormActivity extends AppCompatActivity  implements
             String img3=collImage.getImgphieu();
             if (img3.length()>0) {
                 Json.logi("img3:" + img3);
-                new UploadFileToServer(img3, isdn, "phieu").execute();
+                new UploadFileToServer(img3, isdn, "phieu",currdate).execute();
             }
         }
         catch (Exception e)
@@ -474,7 +551,7 @@ public class FormActivity extends AppCompatActivity  implements
             String img4=collImage.getImganhnguoi();
             if (img4.length()>0) {
                 Json.logi("img4:" + img4);
-                new UploadFileToServer(img4, isdn, "anhnguoi").execute();
+                new UploadFileToServer(img4, isdn, "anhnguoi",currdate).execute();
             }
         }
         catch (Exception e)
@@ -487,13 +564,29 @@ public class FormActivity extends AppCompatActivity  implements
             String img5=collImage.getImgchuky();
             if (img5.length()>0) {
                 Json.logi("img5:" + img5);
-                new UploadFileToServer(img5, isdn, "chuky").execute();
+                new UploadFileToServer(img5, isdn, "chuky",currdate).execute();
             }
         }
         catch (Exception e)
         {
             Json.logi("loi UploadImg2server:"+ e.toString());
         }
+
+    }
+    public void thongbaoloi(String noidung){
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        builder.setTitle("Lỗi");
+        builder.setMessage(noidung)
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+
+                            }
+                        });
+        android.app.AlertDialog alert = builder.create();
+        alert.show();
 
     }
 

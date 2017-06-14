@@ -27,6 +27,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -108,6 +109,7 @@ public class Json {
                 TinhObj tinhObj=new TinhObj();
                 tinhObj.setName(c.getString("name"));
                 tinhObj.setId(c.getString("id"));
+                tinhObj.setParent(c.getString("parent"));
                 studentArray1.add(tinhObj);
             }
         } catch (JSONException e) {
@@ -326,7 +328,8 @@ public class Json {
         return b;
     }
     public String POST_Thongtinn(ThongtinObj thongtinObj){
-
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         String url=Config.URL_POST_THONGTIN;
         logi("POST_Thongtinn:"+Config.URL_POST_THONGTIN);
         InputStream inputStream = null;
@@ -336,10 +339,11 @@ public class Json {
             HttpPost httpPost = new HttpPost(url);
             String json = "";
             json=gson.toJson(thongtinObj);
-            StringEntity se = new StringEntity(json);
-            httpPost.setEntity(se);
+            //StringEntity se = new StringEntity(json);
+            httpPost.setEntity(new StringEntity(json, "UTF8"));
+            httpPost.setHeader("Content-type", "application/json");
             httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json;charset=utf8");
+            //httpPost.setHeader("Content-type", "application/json;charset=utf-8");
             HttpResponse httpResponse = httpclient.execute(httpPost);
             inputStream = httpResponse.getEntity().getContent();
             if(inputStream != null)
@@ -355,7 +359,41 @@ public class Json {
         return result;
     }
 
+    public String POST_TEST(ThongtinObj thongtinObj){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        String url=Config.URL_POST_TEST;
+        logi("POST_Thongtinn:"+Config.URL_POST_TEST);
+        InputStream inputStream = null;
+        String result = "";
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+            String json = "";
+            json=gson.toJson(thongtinObj);
+            StringEntity se = new StringEntity(json);
+            //se.setContentEncoding(HTTP.UTF_8);
+            //String jsonText = EntityUtils.toString(entity, HTTP.UTF_8);
+            httpPost.setEntity(new StringEntity(json, "UTF8"));
+            httpPost.setHeader("Content-type", "application/json");
+            //httpPost.setEntity(se);
+            //httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+            httpPost.setHeader("Accept", "application/json");
+            //httpPost.setHeader("Content-type", "application/json;charset=utf8");
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+            inputStream = httpResponse.getEntity().getContent();
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "Did not work!";
 
+        } catch (Exception e) {
+            Log.d("InputStream", e.toString());
+        }
+        logi("nhan dc result:"+ result);
+
+        return result;
+    }
 
     public static void logi(String str){
         Log.i("MyActivity:",str);

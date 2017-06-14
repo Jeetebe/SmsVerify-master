@@ -9,4 +9,6 @@
 
     <color name="bg_view_sms">#ffd423</color>
     <color name="bg_view_otp">#fc6d38</color>
+
+    <color name="transblue">#3338b4fc</color>
 </resources>
