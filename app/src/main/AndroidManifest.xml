@@ -35,19 +35,23 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.FormActivity" />
+        <activity android:name=".activity.FormActivity">
+
+     </activity>
         <activity
             android:name=".activity.ImgPickerActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.SignatureActivity" />
-        <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.SearchActivity"></activity>
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SplashActivity">
+
         </activity>
         <activity android:name=".activity.LogActivity">
 

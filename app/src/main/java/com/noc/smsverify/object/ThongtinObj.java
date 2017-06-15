@@ -10,7 +10,7 @@ public class ThongtinObj {
         pEZ        ="";
         pIMEI      ="";
         // --Loai: 1: dau noi=""; 2: dang ky thong tin=""; 3: thay doi thong tinpPhanLoai   NUMBER="";
-        pPhanLoai=0;
+        pPhanLoai=1;
         pShop_Code  ="";
         pEmployee   ="";
         pisdn       ="";
@@ -40,6 +40,7 @@ public class ThongtinObj {
         pfile_hinh   ="";
         //-- Thay doi thong tin moi co truong nay=""; noi dung xem o bang dnol_reason=""; daunoi va dktt Reasoncode = null
         pReasonCode  ="";
+        pfile_chuky="";
     }
 
     String pEZ        ;
@@ -76,7 +77,15 @@ public class ThongtinObj {
     String pfile_hinh   ;
     //-- Thay doi thong tin moi co truong nay; noi dung xem o bang dnol_reason; daunoi va dktt Reasoncode = null
     String pReasonCode  ;
+    String pfile_chuky;
 
+    public String getPfile_chuky() {
+        return pfile_chuky;
+    }
+
+    public void setPfile_chuky(String pfile_chuky) {
+        this.pfile_chuky = pfile_chuky;
+    }
 
     public int getpPhanLoai() {
         return pPhanLoai;
@@ -309,29 +318,29 @@ public class ThongtinObj {
         pEZ        ="939700303";
         pIMEI      ="123";
         // --Loai: 1: dau noi=""; 2: dang ky thong tin=""; 3: thay doi thong tinpPhanLoai   NUMBER="";
-        pPhanLoai=0;
+        pPhanLoai=1;
         pShop_Code  ="1";
         pEmployee   ="1";
-        pisdn       ="898028970";
-        pserial     ="1";
-        photen      ="test";
+        pisdn       =isdn;
+        pserial     ="8401161033617932";
+        photen      ="Nguyễn Văn Nguyễn";
 
         pNational   ="";
         pngaysinh   ="01/01/2001";
         int pGioiTinh   =0;
-        pcmnd       ="1";
-        pNoiCapCMND ="";
+        pcmnd       ="092080002206";
+        pNoiCapCMND ="CTH";
         pNgayCapCMND ="01/01/2001";
 
-        pmatinh      ="";
-        pmahuyen     ="";
-        pmaxa        ="";
+        pmatinh      ="CTH";
+        pmahuyen     ="NKI";
+        pmaxa        ="AKH";
         ptoap        ="";
         pduong       ="";
         psonha       ="";
         psdt_lienhe  ="";
         pEmail       ="";
-        pdoituong    ="";
+        pdoituong    ="CBT0";
 
         pfile_cmnd1  ="";
         pfile_cmnd2  ="";
@@ -339,5 +348,8 @@ public class ThongtinObj {
         pfile_hinh   ="";
         //-- Thay doi thong tin moi co truong nay=""; noi dung xem o bang dnol_reason=""; daunoi va dktt Reasoncode = null
         pReasonCode  ="";
+
+        pfile_chuky="";
+
     }
 }

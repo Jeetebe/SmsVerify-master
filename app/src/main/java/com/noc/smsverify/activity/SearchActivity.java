@@ -1,6 +1,7 @@
 package com.noc.smsverify.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -88,5 +89,16 @@ public class SearchActivity extends AppCompatActivity {
             searchview.clearFocus();
         }
         Json.logi("isdn:"+isdn);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        overridePendingTransition(R.anim.null_animation, R.anim.slide_out_bottom);
+//        if (requestCode == 300)// Form
+//        {
+//
+//        }
+        finish();
     }
 }

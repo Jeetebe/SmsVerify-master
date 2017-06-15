@@ -7,6 +7,22 @@ package com.noc.smsverify.object;
 public class TinhObj {
     String name;
     String id;
+    String parent;
+
+    public TinhObj(String name, String id, String parent) {
+        this.name = name;
+        this.id = id;
+        this.parent = parent;
+    }
+
+    public String getParent() {
+        return parent;
+
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
 
     public String getName() {
         return name;
@@ -27,9 +43,9 @@ public class TinhObj {
         this.id = id;
     }
 
-    public TinhObj(String name, String id) {
-        this.name = name;
-        this.id = id;
-
-    }
+//    public TinhObj(String name, String id) {
+//        this.name = name;
+//        this.id = id;
+//
+//    }
 }
