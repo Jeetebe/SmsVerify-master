@@ -13,8 +13,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.noc.smsverify.R;
-import com.noc.smsverify.activity.FormActivity;
+import com.cty9.daunoionline.R;
+import com.cty9.daunoionline.activity.FormActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,50 +48,11 @@ public class ListAdapter extends BaseAdapter implements Filterable {
         return position;
     }
 
-//    @Override
-//    public View getView(int position, View convertView, final ViewGroup parent) {
-//        ViewHolder holder = null;
-//        final String isdn =  getItem(position);
-//        if (inflater == null) {
-//            inflater = (LayoutInflater) parent.getContext()
-//                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        }
-//        //RowItemBinding rowItemBinding = DataBindingUtil.inflate(inflater, R.layout.row_item, parent, false);
-//       // rowItemBinding.stringName.setText(mData.get(position));
-//        if (convertView == null) {
-//            convertView = inflater.inflate(R.layout.row_item, null);
-//            holder = new ViewHolder();
-//           // holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-//            holder.isdn = (TextView) convertView.findViewById(R.id.stringName);
-//            holder.btn = (Button) convertView.findViewById(R.id.btndangky);
-//
-//            // setting the image resource and title
-//
-//            holder.isdn.setText(mData.get(position));
-//
-//            holder.btn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    Intent intent = new Intent(context, FormActivity.class);
-//                    intent.putExtra("isdn",isdn);
-//                    Activity activity = (Activity) context;
-//                    activity.startActivityForResult(intent, 300);
-//                    activity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.null_animation);
-//
-//                }
-//            });
-//            convertView.setTag(holder);
-//
-//        }
-//
-//        return convertView;
-//        //return rowItemBinding.getRoot();
-//    }
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
     // Get the data item for this position
     final String strisdn = getItem(position);
+    final String stt = Integer.toString(position);
     // Check if an existing view is being reused, otherwise inflate the view
     ViewHolder viewHolder; // view lookup cache stored in tag
 
@@ -103,6 +64,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         convertView = inflater.inflate(R.layout.row_item, parent, false);
         viewHolder.isdn = (TextView) convertView.findViewById(R.id.stringName);
+        viewHolder.stt = (TextView) convertView.findViewById(R.id.txtstt);
         viewHolder.btn = (Button) convertView.findViewById(R.id.btndangky);
         viewHolder.btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,6 +72,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
                     Intent intent = new Intent(context, FormActivity.class);
                     intent.putExtra("isdn",strisdn);
+                    intent.putExtra("isdangky",false);
                     Activity activity = (Activity) context;
                     activity.startActivityForResult(intent, 300);
                     activity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.null_animation);
@@ -127,6 +90,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 
     viewHolder.isdn.setText(strisdn);
+    viewHolder.stt.setText(stt);
 
     return convertView;
 }
@@ -173,5 +137,6 @@ public View getView(int position, View convertView, ViewGroup parent) {
         ImageView icon;
         TextView isdn;
         Button btn;
+        TextView stt;
     }
 }

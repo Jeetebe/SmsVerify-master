@@ -1,23 +1,19 @@
 package adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.noc.smsverify.R;
-import com.noc.smsverify.activity.FormActivity;
-import com.noc.smsverify.object.LogObj;
+import com.cty9.daunoionline.R;
+import com.cty9.daunoionline.object.LogObj;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListLogAdapter extends BaseAdapter implements Filterable {
@@ -53,6 +49,7 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         LogObj dataModel = getItem(position);
+        String stt = Integer.toString(position);
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
 
@@ -67,7 +64,7 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
             viewHolder.ngay = (TextView) convertView.findViewById(R.id.ngay);
             viewHolder.txtghichu = (TextView) convertView.findViewById(R.id.ghichu);
             viewHolder.iconstatus = (ImageView) convertView.findViewById(R.id.iconstatus);
-
+            viewHolder.stt = (TextView) convertView.findViewById(R.id.txtstt);
             result=convertView;
 
             convertView.setTag(viewHolder);
@@ -83,63 +80,29 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
         viewHolder.isdn.setText(dataModel.getIsdn());
         viewHolder.ngay.setText(dataModel.getNgay());
         viewHolder.txtghichu.setText(dataModel.getGhichu());
-        //viewHolder.info.setOnClickListener(this);
-        //viewHolder.info.setTag(position);
-        // Return the completed view to render on screen
-        String status=dataModel.getStatus();
-                if (status.equals("2"))
+        viewHolder.stt.setText(stt);
+
+        if (dataModel.getStatus().equals("0"))
+        {
+            viewHolder.iconstatus.setImageResource(R.drawable.ic_access_time_yellow_500_24dp);
+        }
+                if (dataModel.getStatus().equals("1"))
                 {
                     viewHolder.iconstatus.setImageResource(R.drawable.ic_check_circle_light_green_800_24dp);
+                    viewHolder.txtghichu.setText("Thành công");
                 }
-                else if (status.equals("3"))
+                else if (dataModel.getStatus().equals("3"))
                 {
                     viewHolder.iconstatus.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
                 }
+                else
+                {
+                    viewHolder.txtghichu.setText("Đang chờ kiểm duyệt");
+                }
+
+
         return convertView;
     }
-
-//    @Override
-//        public View getView(int position, View convertView, final ViewGroup parent) {
-//            ViewHolder holder = null;
-//            LogObj logobj =  getItem(position);
-//            if (inflater == null) {
-//                inflater = (LayoutInflater) parent.getContext()
-//                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            }
-//            //RowItemBinding rowItemBinding = DataBindingUtil.inflate(inflater, R.layout.row_item, parent, false);
-//            // rowItemBinding.stringName.setText(mData.get(position));
-//            if (convertView == null) {
-//                convertView = inflater.inflate(R.layout.row_item_log, null);
-//                holder = new ViewHolder();
-//                holder.iconstatus = (ImageView) convertView.findViewById(R.id.iconstatus);
-//                holder.isdn = (TextView) convertView.findViewById(R.id.strisdnlog);
-//                holder.txtghichu = (TextView) convertView.findViewById(R.id.ghichu);
-//                holder.ngay = (TextView) convertView.findViewById(R.id.ngay);
-//
-//                // setting the image resource and title
-//
-//                holder.isdn.setText(position+"."+mData.get(position).getIsdn());
-//                holder.ngay.setText(mData.get(position).getNgay());
-//                holder.txtghichu.setText(mData.get(position).getGhichu());
-//
-//                String status=logobj.getStatus();
-//                if (status.equals("2"))
-//                {
-//                    holder.iconstatus.setImageResource(R.drawable.ic_check_circle_light_green_800_24dp);
-//                }
-//                else if (status.equals("3"))
-//                {
-//                    holder.iconstatus.setImageResource(R.drawable.ic_report_problem_red_400_24dp);
-//                }
-//                convertView.setTag(holder);
-//            } else {
-//                holder = (ViewHolder) convertView.getTag();
-//                //result=holder;
-//            }
-//
-//        return convertView;
-//        //return rowItemBinding.getRoot();
-//    }
 
     @Override
     public Filter getFilter() {
@@ -184,5 +147,6 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
         TextView isdn;
         TextView txtghichu;
         TextView ngay;
+        TextView stt;
     }
 }

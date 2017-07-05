@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3b5bb3</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#1dafe9</color>
+    <color name="colorPrimaryDark">#0586cc</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
@@ -11,4 +11,6 @@
     <color name="bg_view_otp">#fc6d38</color>
 
     <color name="transblue">#3338b4fc</color>
+
+    <color name="light1">#e6e7e9</color>
 </resources>

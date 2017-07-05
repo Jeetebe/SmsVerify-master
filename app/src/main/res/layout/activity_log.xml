@@ -5,28 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.noc.smsverify.activity.LogActivity"
+    tools:context="com.cty9.daunoionline.activity.LogActivity"
     android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/colorPrimary">
-    <TextView
-        android:text="Log"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:textColor="@android:color/white"
-        android:layout_marginLeft="15dp"
-        android:textSize="@dimen/textsizemedium" />
-    <ImageView
-        android:id="@+id/btnclose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_close_clear_cancel" />
-</LinearLayout>
+    <LinearLayout
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/icon40"
+            android:layout_height="@dimen/icon40"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/basic_clockwise" />
+        <TextView
+            android:text="Lịch sử"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="@dimen/textsizemedium"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical" />
+        <ImageView
+            android:id="@+id/imgclose"
+            android:layout_width="@dimen/icon40"
+            android:src="@drawable/ic_close_white_36dp"
+            android:layout_height="@dimen/icon40"
+            android:layout_gravity="center"
+            android:padding="8dp" />
+    </LinearLayout>
     <ListView
         android:id="@+id/listlog"
         android:layout_width="fill_parent"
@@ -36,6 +43,7 @@
         android:layout_below="@+id/search"
         android:layout_margin="10dp"
         android:dividerHeight="1dp"
-        android:divider="@color/fab_material_grey_500" />
+        android:divider="@color/light1"
+        android:scrollbars="none" />
 
 </LinearLayout>

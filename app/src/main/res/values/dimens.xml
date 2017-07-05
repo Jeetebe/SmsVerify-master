@@ -4,4 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="textsizemedium">18sp</dimen>
     <dimen name="textsizebig">24sp</dimen>
+
+    <dimen name="icon1">28dp</dimen>
+    <dimen name="icon40">40dp</dimen>
+    <dimen name="icon70">70dp</dimen>
 </resources>

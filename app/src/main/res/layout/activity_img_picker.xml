@@ -7,171 +7,256 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.noc.smsverify.activity.ImgPickerActivity"
+    tools:context="com.cty9.daunoionline.activity.ImgPickerActivity"
     android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@android:color/darker_gray"
-        android:layout_margin="10dp">
-        <ImageView
-            android:id="@+id/imgmattruoc"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:background="@android:color/white" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Mặt trước"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:textSize="@dimen/textsizemedium" />
-            <ImageView
-                android:id="@+id/imgcam1"
-                android:scaleType="centerCrop"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bglogin"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_camera_alt_pink_a700_36dp" />
-            <ImageView
-                android:id="@+id/imgfold1"
-                android:layout_width="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/frame1"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imgmattruoc"
+                    android:layout_width="580dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.95"
+                    android:background="@android:color/white"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/ln1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imgcam1"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icocam" />
+
+                        <ImageView
+                            android:id="@+id/imgfold1"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/folder" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="CMND mặt trước"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_create_new_folder_indigo_500_36dp" />
+                android:layout_margin="16dp"
+                android:background="@drawable/frame1"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imgmatsau"
+                    android:layout_width="580dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.95"
+                    android:background="@android:color/white"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/ln2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imgcam2"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icocam" />
+
+                        <ImageView
+                            android:id="@+id/imgfold2"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/folder" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="CMND mặt sau"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/frame1"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imgphieuthongtin"
+                    android:layout_width="580dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.95"
+                    android:background="@android:color/white"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/ln3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imgcam3"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icocam" />
+
+                        <ImageView
+                            android:id="@+id/imgfold3"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/folder" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Phiếu thông tin"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/frame1"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imganhnguoi"
+                    android:layout_width="580dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.95"
+                    android:background="@android:color/white"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/ln4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imgcam4"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/icocam" />
+
+                        <ImageView
+                            android:id="@+id/imgfold4"
+                            android:layout_width="@dimen/icon70"
+                            android:layout_height="@dimen/icon70"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/folder" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Ảnh khách hàng"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/darker_gray"
-            android:layout_margin="10dp">
-            <ImageView
-                android:id="@+id/imgmatsau"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="5dp"
-                android:background="@android:color/white" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Mặt sau"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="@dimen/textsizemedium" />
-                <ImageView
-                    android:id="@+id/imgcam2"
-                    android:scaleType="centerCrop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera_alt_pink_a700_36dp" />
-                <ImageView
-                    android:id="@+id/imgfold2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_create_new_folder_indigo_500_36dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/darker_gray"
-            android:layout_margin="10dp">
-            <ImageView
-                android:id="@+id/imgphieuthongtin"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="5dp"
-                android:background="@android:color/white" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Phiếu thông tin"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="@dimen/textsizemedium" />
-                <ImageView
-                    android:id="@+id/imgcam3"
-                    android:scaleType="centerCrop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera_alt_pink_a700_36dp" />
-                <ImageView
-                    android:id="@+id/imgfold3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_create_new_folder_indigo_500_36dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/darker_gray"
-            android:layout_margin="10dp">
-            <ImageView
-                android:id="@+id/imganhnguoi"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="5dp"
-                android:background="@android:color/white" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Ảnh người tác động"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="@dimen/textsizemedium" />
-                <ImageView
-                    android:id="@+id/imgcam4"
-                    android:scaleType="centerCrop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera_alt_pink_a700_36dp" />
-                <ImageView
-                    android:id="@+id/imgfold4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_create_new_folder_indigo_500_36dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-</LinearLayout>
     </ScrollView>
     <com.scalified.fab.ActionButton
         android:id="@+id/action_button"

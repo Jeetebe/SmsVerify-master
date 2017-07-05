@@ -1,302 +1,411 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/hand"
+    android:baselineAligned="false"
     android:orientation="vertical">
 
     <LinearLayout
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/txtisdn"
-        android:maxLines="1"
-        android:layout_weight="1"
-        android:text="898028970"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:textSize="@dimen/textsizebig"
-        android:padding="10dp"
+        android:background="@color/colorPrimaryDark">
 
-        android:textColor="@android:color/white" />
         <ImageView
-            android:id="@+id/action_button_submit"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-            android:src="@drawable/ic_send_white_48dp"
-            android:padding="5dp" />
+            android:layout_width="@dimen/icon40"
+            android:layout_height="@dimen/icon40"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/basic_todolist" />
+
+        <TextView
+            android:id="@+id/txttitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Đấu nối"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textsizemedium" />
+
+        <ImageView
+            android:id="@+id/imgclose"
+            android:layout_width="@dimen/icon40"
+            android:layout_height="@dimen/icon40"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/ic_close_white_36dp" />
     </LinearLayout>
 
     <ScrollView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtisdn">
 
+        >
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            // Write something
+
             <LinearLayout
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="@color/fab_material_green_500"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/imgAddimg"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_linked_camera_white_48dp"
-                    android:layout_gravity="center" />
-                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <EditText
+                    android:id="@+id/txtisdn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                <TextView
-                    android:text="File hồ sơ"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
+                    android:hint="MSISDN"
+                    android:inputType="number"
+                    android:maxLines="1" />
+                <EditText
+                    android:id="@+id/txtserialsim"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/textsizemedium"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@android:color/white" />
-                    <ImageView
-                        android:id="@+id/imgstatus1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_report_problem_red_400_24dp" />
-                </LinearLayout>
+                    android:hint="Serial SIM"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+
+
             </LinearLayout>
+
             <LinearLayout
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="@android:color/holo_blue_light"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/imgSign"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <EditText
+                    android:id="@+id/txthoten"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_sign"
-                    android:layout_gravity="center" />
+                    android:hint="Họ và Tên"
+                    android:maxLines="1" />
+
+                <com.pratap.calendarview.views.DatePickerView
+                    android:id="@+id/txtdatengaysinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ngày sinh"
+                    android:textSize="18sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:text="Ký tên"
-                        android:textColor="@android:color/white"
+                        android:id="@+id/txtgioitinh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:padding="10dp"
+                        android:text="Giới tính: Nam" />
+
+                    <Switch
+                        android:theme="@style/MySwitch2"
+                        android:id="@+id/swgioitinh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+                <EditText
+                    android:id="@+id/txtcmnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CMND"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+                <com.pratap.calendarview.views.DatePickerView
+                    android:id="@+id/txtdatengaycap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Ngày cấp"
+                    android:textSize="18sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtnoicap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:padding="8dp"
+                        android:text="Nơi cấp"
+                        android:textSize="@dimen/textsizemedium" />
+
+                    <Spinner
+                        android:id="@+id/spinnernoicap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:prompt="@string/noicap_prompt" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/txtmanv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/textsizemedium"
-                        android:layout_marginLeft="5dp" />
+                        android:layout_weight="1"
+                        android:hint="Mã NV đấu nối"
+                        android:maxLines="1" />
+
                     <ImageView
-                        android:id="@+id/imgstatus2"
+                        android:id="@+id/listmannv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_report_problem_red_400_24dp" />
+                        android:src="@drawable/ic_list_black_36dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/txtdoituong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:text="Đối tượng"
+                        android:textSize="18sp" />
+
+                    <Spinner
+                        android:id="@+id/spinnerdoituong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:prompt="@string/doituong_prompt" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:text="Khu vực"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:orientation="vertical">
+
+
+                    <Spinner
+                        android:textSize="18sp"
+                        android:id="@+id/spinnertinh"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:prompt="@string/tinh_prompt" />
+
+                    <Spinner
+                        android:textSize="18sp"
+                        android:id="@+id/spinnerhuyen"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:prompt="@string/huyen_prompt" />
+
+                    <Spinner
+                        android:textSize="18sp"
+                        android:id="@+id/spinnerxa"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:prompt="@string/xa_prompt" />
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-        // Write something
 
 
-
-
-
-
-        <EditText
-            android:id="@+id/txtserialsim"
-            android:maxLines="1"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Serial SIM*" />
-        <EditText
-            android:id="@+id/txthoten"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Họ và Tên*"
-            />
-        <com.pratap.calendarview.views.DatePickerView
-            android:id="@+id/txtdatengaysinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ngày sinh"
-            android:textSize="18sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right">
-            <TextView
-                android:id="@+id/txtgioitinh"
-                android:text="Giới tính: Nam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginLeft="5dp" />
-            <Switch
-                android:id="@+id/swgioitinh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <EditText
-            android:id="@+id/txtcmnd"
-            android:inputType="number"
-            android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="CMND*" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:text="Nơi cấp*"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/textsizemedium"
-        android:padding="8dp" />
-        <Spinner
-            android:id="@+id/spinnernoicap"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:prompt="@string/noicap_prompt"
-            android:layout_marginLeft="50dp" />
-</LinearLayout>
-        <com.pratap.calendarview.views.DatePickerView
-            android:id="@+id/txtdatengaycap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ngày cấp*"
-            android:textSize="18sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        <TextView
-            android:text="Đối tượng*"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:padding="8dp" />
-            <Spinner
-                android:id="@+id/spinnerdoituong"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:prompt="@string/doituong_prompt"
-                />
-        </LinearLayout>
-        <TextView
-            android:text="Khu vực*"
-            android:textSize="18sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="100dp">
-
-
-        <Spinner
-            android:id="@+id/spinnertinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/tinh_prompt" />
-        <Spinner
-            android:id="@+id/spinnerhuyen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/huyen_prompt"
-            />
-        <Spinner
-            android:id="@+id/spinnerxa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/xa_prompt"
-            />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/txtmanv"
-                android:maxLines="1"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Mã NV đấu nối" />
-            <ImageView
-                android:id="@+id/listmannv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_list_black_36dp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="15dp"
-            android:background="@color/transblue">
-            <EditText
-                android:id="@+id/txtsdtlienhe"
-                android:maxLines="1"
-                android:inputType="number"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="SĐT liên hệ" />
-            <EditText
-                android:id="@+id/txtemail"
-                android:maxLines="1"
+                android:layout_marginTop="10dp"
+                android:background="@color/transblue"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/txtsdtlienhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="SĐT liên hệ"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/txtemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/txtsonha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Số nhà"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/txtto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tổ"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/txtduong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Đường"
+                    android:maxLines="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email" />
-            <EditText
-                android:id="@+id/txtsonha"
-                android:maxLines="1"
+                android:layout_marginTop="10dp"
+                android:background="@color/transblue"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgAddimg"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/icocam" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Ảnh hồ sơ"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lnSign"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/transblue"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgSign"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/sign" />
+
+                    <TextView
+                        android:id="@+id/txtkyten"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Ký tên"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Số nhà" />
-            <EditText
-                android:id="@+id/txtto"
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Tổ" />
-            <EditText
-                android:id="@+id/txtduong"
-                android:maxLines="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Đường" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.dd.CircularProgressButton
+                    android:id="@+id/btnWithText"
+                    android:layout_width="196dp"
+                    android:layout_height="64dp"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/cpb_white"
+                    android:textSize="18sp"
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textComplete="Thành công"
+                    app:cpb_textError="Thất bại"
+                    app:cpb_textIdle="Hoàn tất" />
+            </LinearLayout>
 
         </LinearLayout>
-
-
-
-    </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

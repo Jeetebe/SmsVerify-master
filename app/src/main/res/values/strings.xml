@@ -8,7 +8,7 @@
     <string name="msg_enter_mobile">ĐĂNG NHẬP</string>
     <string name="lbl_name">Name</string>
     <string name="lbl_email">Email</string>
-    <string name="lbl_mobile">Nhập số điện thoại</string>
+    <string name="lbl_mobile">Số điện thoại</string>
     <string name="lbl_next">Lấy mã OTP</string>
     <string name="msg_sit_back"></string>
     <string name="msg_manual_otp"></string>
@@ -30,4 +30,5 @@
 
     <string name="yeucaucapnhat">Đã có phiên bản mới !</string>
     <string name="capnhat">Cập nhật</string>
+    <string name="dauso">Đầu số</string>
 </resources>
