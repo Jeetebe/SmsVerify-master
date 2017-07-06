@@ -18,7 +18,7 @@ public class ViewDialog {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_cross);
+        dialog.setContentView(R.layout.dialog_fail);
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
         text.setText(msg);

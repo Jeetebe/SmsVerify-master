@@ -13,4 +13,8 @@
     <color name="transblue">#3338b4fc</color>
 
     <color name="light1">#e6e7e9</color>
+
+    <color name="solid_one">#4abc96</color>
+    <color name="solid_two">#357180</color>
+    <color name="solid_three">#ffce00</color>
 </resources>

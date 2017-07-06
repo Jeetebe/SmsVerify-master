@@ -49,7 +49,7 @@ public class ListLogAdapter extends BaseAdapter implements Filterable {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         LogObj dataModel = getItem(position);
-        String stt = Integer.toString(position);
+        String stt = Integer.toString(mData.size()-position);
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
 

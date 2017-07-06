@@ -31,22 +31,60 @@
             android:padding="8dp" />
 </LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical">
-
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search"
-            android:background="@layout/rounded_border_edittext"
-            android:inputType="number"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_margin="8dp" />
+            android:layout_margin="10dp"
+            android:background="@color/transblue"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-</LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="fill_vertical"
+                            android:text="Đầu số"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/spinnerdauso"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:prompt="@string/dauso"
+                            android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.SearchView
+                    android:id="@+id/search"
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:clickable="true"
+                    android:inputType="number"
+                   />
+
+                <Button
+                    android:id="@+id/btntimkiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Tìm kiếm"
+                    android:textColor="@color/white" />
+
+
+        </LinearLayout>
 
         <ListView
             android:id="@+id/list_view"

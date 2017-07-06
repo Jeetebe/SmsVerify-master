@@ -51,8 +51,9 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
     // Get the data item for this position
+    //int size= mData.size();
     final String strisdn = getItem(position);
-    final String stt = Integer.toString(position);
+    final String stt = Integer.toString(position+1);
     // Check if an existing view is being reused, otherwise inflate the view
     ViewHolder viewHolder; // view lookup cache stored in tag
 

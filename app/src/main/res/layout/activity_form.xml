@@ -392,17 +392,15 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.dd.CircularProgressButton
+                <Button
                     android:id="@+id/btnWithText"
                     android:layout_width="196dp"
                     android:layout_height="64dp"
-                    android:layout_margin="15dp"
-                    android:textColor="@color/cpb_white"
-                    android:textSize="18sp"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textComplete="Thành công"
-                    app:cpb_textError="Thất bại"
-                    app:cpb_textIdle="Hoàn tất" />
+                    android:layout_margin="16dp"
+                    android:background="@drawable/botron1"
+                    android:text="Hoàn tất"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
